@@ -33,7 +33,7 @@ const mobileMenuOpen = ref(false)
       </aside>
 
       <!-- Main Content -->
-      <main class="flex-1 min-w-0 px-4 py-6 lg:px-8">
+      <main class="flex-1 min-w-0 px-4 py-5 lg:px-8">
         <slot />
       </main>
 

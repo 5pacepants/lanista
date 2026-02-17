@@ -1,11 +1,21 @@
 <script setup lang="ts">
-import { Info, BookOpen, Gem, History, BarChart3, Shirt, Briefcase, Award, Activity, Coins, Shield } from 'lucide-vue-next'
+import {
+  Coins,
+  Sparkles,
+  Users,
+  Briefcase,
+  Swords,
+  Hammer,
+  Skull,
+  Building2,
+  Info,
+} from 'lucide-vue-next'
+import avatarSrc from '~/assets/avatar.jpg'
+import gladiatorStallSrc from '~/assets/gladiatorstall.png'
 
 const gladiator = {
   name: 'Anhängare Juomno',
   title: 'Grad 9',
-  image: '/gladiator-placeholder.png',
-  capacity: { current: 328, max: 328 },
   hp: { current: 118, max: 118 },
   ep: { current: 1675, max: 1680 },
   time: { current: 128, max: 128 },
@@ -14,64 +24,66 @@ const gladiator = {
   silver: 770,
 }
 
-const sideLinks = [
-  { label: 'Info', icon: Info, href: '/avatar/info' },
-  { label: 'Biografi', icon: BookOpen, href: '/avatar/biography' },
-  { label: 'Egenskaper', icon: Gem, href: '/avatar/properties' },
-  { label: 'Historia', icon: History, href: '/avatar/history' },
-  { label: 'Statistik', icon: BarChart3, href: '/avatar/statistics' },
-  { label: 'Utrustning', icon: Shirt, href: '/avatar/equipment' },
-  { label: 'Yrken', icon: Briefcase, href: '/avatar/professions' },
-  { label: 'Bedrifter', icon: Award, href: '/avatar/achievements' },
-  { label: 'Aktivitet', icon: Activity, href: '/avatar/activity' },
+const passiveOptions = [
+  { value: 'knega', label: 'Knega', icon: Briefcase },
+  { value: 'stridstraning', label: 'Stridsträning', icon: Swords },
+  { value: 'verkstaden', label: 'Verkstaden', icon: Hammer },
+  { value: 'odjur', label: 'Odjur', icon: Skull },
+  { value: 'stadsbyggnader', label: 'Stadsbyggnader', icon: Building2 },
 ]
 
-const route = useRoute()
+const selectedPassive = ref('knega')
+
+const standbyGladiator = {
+  name: 'Väktare Tarian',
+  title: 'Grad 7',
+  hp: { current: 96, max: 112 },
+  ep: { current: 930, max: 1440 },
+  time: { current: 76, max: 128 },
+}
 </script>
 
 <template>
   <aside class="space-y-4 py-4">
-    <!-- Gladiator Stall Header -->
-    <div class="px-3">
-      <div class="flex items-center justify-between">
-        <h3 class="text-xs font-semibold uppercase tracking-wider text-muted-foreground" style="font-family: var(--font-display);">
-          Gladiatorstall
-        </h3>
-        <span class="text-xs text-muted-foreground tabular-nums">
-          {{ gladiator.capacity.current }}/{{ gladiator.capacity.max }}
-        </span>
-      </div>
+    <div class="px-3 flex justify-end">
+      <Button variant="ghost" size="icon" class="size-7 rounded-full" title="Byt gladiator">
+        <Users class="size-4 text-primary" />
+      </Button>
     </div>
 
-    <!-- Gladiator Card -->
     <div class="px-3">
-      <Card class="card-interactive overflow-hidden card-gold-accent">
+      <Card class="card-interactive surface-card-highlight overflow-hidden card-gold-accent">
         <CardContent class="p-3">
           <div class="text-center">
-            <h4 class="font-semibold text-sm" style="font-family: var(--font-display);">{{ gladiator.name }}</h4>
+            <h4 class="font-semibold text-base" style="font-family: var(--font-display);">{{ gladiator.name }}</h4>
             <p class="text-xs text-muted-foreground">{{ gladiator.title }}</p>
           </div>
 
-          <!-- Portrait with decorative frame -->
-          <div class="my-3 portrait-frame aspect-[3/4] w-full overflow-hidden rounded-lg bg-gradient-to-b from-muted to-muted/60 flex items-center justify-center">
-            <Shield class="size-16 text-muted-foreground/20" />
+          <div class="my-3 portrait-frame aspect-[3/4] w-full overflow-hidden rounded-lg">
+            <img
+              :src="avatarSrc"
+              :alt="gladiator.name"
+              class="size-full object-cover object-top"
+            />
           </div>
 
-          <!-- Stat Bars -->
-          <div class="space-y-2 mt-4">
+          <div class="mb-3 flex items-center justify-center gap-1 rounded-md border border-primary/25 bg-primary/8 px-2 py-1.5 text-xs font-medium text-primary">
+            <Sparkles class="size-3.5" />
+            Aktiv gladiator
+          </div>
+
+          <div class="space-y-2 mt-3">
             <GameStatBar label="KP" :current="gladiator.hp.current" :max="gladiator.hp.max" color="hp" tooltip="Kroppspoäng" />
             <GameStatBar label="EP" :current="gladiator.ep.current" :max="gladiator.ep.max" color="ep" tooltip="Erfarenhetspoäng" />
             <GameStatBar label="TID" :current="gladiator.time.current" :max="gladiator.time.max" color="time" tooltip="Tillgängliga rundor" />
 
-            <!-- Heal timer -->
             <div class="flex items-center justify-between rounded-md bg-muted/50 px-2.5 py-1.5">
-              <span class="text-xs font-semibold uppercase tracking-wide text-muted-foreground" style="font-size: 0.65rem;">Lädd</span>
+              <span class="section-kicker">Lädd</span>
               <span class="text-xs font-bold tabular-nums text-amber-600 dark:text-amber-400">{{ gladiator.heal }}</span>
             </div>
 
-            <!-- Form -->
             <div class="flex items-center justify-between rounded-md bg-muted/50 px-2.5 py-1.5">
-              <span class="text-xs font-semibold uppercase tracking-wide text-muted-foreground" style="font-size: 0.65rem;">Form</span>
+              <span class="section-kicker">Form</span>
               <span
                 class="text-xs font-bold tabular-nums"
                 :class="gladiator.form >= 100 ? 'text-emerald-600 dark:text-emerald-400' : 'text-destructive'"
@@ -83,9 +95,32 @@ const route = useRoute()
 
           <Separator class="my-3" />
 
-          <!-- Silver -->
+          <div class="space-y-2">
+            <h4 class="section-kicker">Passiva funktioner</h4>
+            <Select v-model="selectedPassive">
+              <SelectTrigger>
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem v-for="opt in passiveOptions" :key="opt.value" :value="opt.value">
+                  <span class="inline-flex items-center gap-2">
+                    <component :is="opt.icon" class="size-3.5 text-primary" />
+                    {{ opt.label }}
+                  </span>
+                </SelectItem>
+              </SelectContent>
+            </Select>
+
+            <NuxtLink to="/passiva-funktioner" class="inline-flex items-center gap-1 text-xs text-primary hover:underline underline-offset-2">
+              <Info class="size-3.5" />
+              Läs mer
+            </NuxtLink>
+          </div>
+
+          <Separator class="my-3" />
+
           <div class="flex items-center justify-between rounded-md bg-muted/50 px-2.5 py-1.5">
-            <span class="flex items-center gap-1.5 text-xs font-semibold uppercase text-muted-foreground" style="font-size: 0.65rem;">
+            <span class="flex items-center gap-1.5 section-kicker">
               <Coins class="size-3.5 text-amber-500" />
               Silvermynt
             </span>
@@ -95,25 +130,47 @@ const route = useRoute()
       </Card>
     </div>
 
-    <!-- Quick Nav with active state -->
     <div class="px-3">
-      <h4 class="mb-1 px-1 text-xs font-semibold uppercase tracking-wider text-muted-foreground" style="font-family: var(--font-display); font-size: 0.65rem;">
-        {{ gladiator.name }}
-      </h4>
-      <div class="space-y-0.5">
-        <NuxtLink
-          v-for="link in sideLinks"
-          :key="link.label"
-          :to="link.href"
-          class="nav-item flex items-center gap-2 rounded-md px-2 py-1.5 text-sm transition-colors"
-          :class="route.path === link.href
-            ? 'bg-accent/60 text-accent-foreground font-medium border-l-2 border-primary'
-            : 'hover:bg-accent/30 text-muted-foreground hover:text-foreground'"
-        >
-          <component :is="link.icon" class="size-4 shrink-0" :class="route.path === link.href ? 'text-primary' : 'text-muted-foreground'" />
-          <span>{{ link.label }}</span>
-        </NuxtLink>
-      </div>
+      <Card class="card-interactive surface-card">
+        <CardContent class="p-2.5">
+          <div class="flex gap-2.5">
+            <div class="h-16 w-12 shrink-0 overflow-hidden rounded-md border">
+              <img :src="gladiatorStallSrc" :alt="standbyGladiator.name" class="size-full object-cover object-top" />
+            </div>
+            <div class="min-w-0 flex-1 space-y-1.5">
+              <div class="flex items-baseline justify-between gap-2">
+                <p class="truncate text-xs font-semibold" style="font-family: var(--font-display);">{{ standbyGladiator.name }}</p>
+                <span class="text-[0.65rem] text-muted-foreground">{{ standbyGladiator.title }}</span>
+              </div>
+
+              <div class="space-y-1">
+                <div class="flex items-center gap-1 text-[0.62rem]">
+                  <span class="w-6 text-muted-foreground">KP</span>
+                  <div class="h-1.5 flex-1 overflow-hidden rounded-full bg-muted">
+                    <div class="h-full rounded-full bg-gradient-to-r from-red-500 to-red-700" :style="{ width: `${(standbyGladiator.hp.current / standbyGladiator.hp.max) * 100}%` }" />
+                  </div>
+                </div>
+                <div class="flex items-center gap-1 text-[0.62rem]">
+                  <span class="w-6 text-muted-foreground">EP</span>
+                  <div class="h-1.5 flex-1 overflow-hidden rounded-full bg-muted">
+                    <div class="h-full rounded-full bg-gradient-to-r from-blue-400 to-blue-600" :style="{ width: `${(standbyGladiator.ep.current / standbyGladiator.ep.max) * 100}%` }" />
+                  </div>
+                </div>
+                <div class="flex items-center gap-1 text-[0.62rem]">
+                  <span class="w-6 text-muted-foreground">TID</span>
+                  <div class="h-1.5 flex-1 overflow-hidden rounded-full bg-muted">
+                    <div class="h-full rounded-full bg-gradient-to-r from-emerald-400 to-emerald-600" :style="{ width: `${(standbyGladiator.time.current / standbyGladiator.time.max) * 100}%` }" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="pt-0.5">
+                <Button size="sm" class="h-7 px-2.5 text-[0.7rem]">Byt till</Button>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   </aside>
 </template>

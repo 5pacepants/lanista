@@ -1,9 +1,45 @@
 <script setup lang="ts">
 import {
-  Zap, Sword, Trophy, ScrollText, Dices, Calendar, Target, ListChecks,
-  TreePine, Skull, Map, Mountain, Snowflake, Bug, Castle,
-  Users, UserCircle, Handshake, Shield, Flag, Heart, UsersRound,
-  Hammer, Store, Gavel, Wrench, Search, Building, ChevronDown, X
+  Zap,
+  Target,
+  Heart,
+  TreePine,
+  Users,
+  Trophy,
+  ScrollText,
+  Dices,
+  Calendar,
+  Sword,
+  ListChecks,
+  Skull,
+  Map,
+  Snowflake,
+  Bug,
+  Mountain,
+  Shield,
+  Handshake,
+  Flag,
+  UsersRound,
+  UserCircle,
+  Building,
+  Store,
+  Gavel,
+  Wrench,
+  Hammer,
+  Search,
+  Swords,
+  Crown,
+  Castle,
+  Briefcase,
+  Beer,
+  BookOpen,
+  Banknote,
+  LockKeyhole,
+  Landmark,
+  Vault,
+  Newspaper,
+  HelpCircle,
+  ChevronDown,
 } from 'lucide-vue-next'
 
 interface NavItem {
@@ -28,15 +64,16 @@ const navigation: { group: string; items: NavItem[] }[] = [
     group: 'Arenan',
     items: [
       { label: 'Lagspel', icon: Users, href: '/arena/team' },
-      { label: 'Rankade lagspel', icon: Trophy, href: '/arena/ranked', children: [
-        { label: 'Topplistor', icon: ScrollText, href: '/arena/rankings' },
-      ]},
+      {
+        label: 'Rankade lagspel',
+        icon: Trophy,
+        href: '/arena/ranked',
+        children: [{ label: 'Topplistor', icon: ScrollText, href: '/arena/rankings' }],
+      },
       { label: 'Slumpduell', icon: Dices, href: '/arena/random-duel' },
-      { label: 'Turneringar', icon: Calendar, href: '/arena/tournaments', badge: 19, children: [
-        { label: 'Tisdagskaos 14:00', icon: Calendar, href: '/arena/tournaments/tuesday' },
-      ]},
-      { label: 'Dagliga bataljer', icon: Sword, href: '/arena/daily-battles', badge: 1 },
-      { label: 'Utmaningar', icon: Target, href: '/arena/challenges', badge: 26 },
+      { label: 'Turneringar', icon: Calendar, href: '/arena/tournaments', badge: 1 },
+      { label: 'Dagliga bataljer', icon: Sword, href: '/arena/daily-battles', badge: 17 },
+      { label: 'Utmaningar', icon: Target, href: '/arena/challenges', badge: 30 },
       { label: 'Dagliga uppdrag', icon: ListChecks, href: '/arena/daily-quests' },
     ],
   },
@@ -59,11 +96,16 @@ const navigation: { group: string; items: NavItem[] }[] = [
       { label: 'Klanligan', icon: Trophy, href: '/community/clan-league' },
       { label: 'Andraligan', icon: Flag, href: '/community/second-league' },
       { label: 'Miniligan', icon: UsersRound, href: '/community/mini-league' },
-      { label: 'Min gemenskap', icon: UserCircle, href: '/community/my', children: [
-        { label: 'Strider', icon: Sword, href: '/community/my/battles' },
-        { label: 'Byggnader', icon: Building, href: '/community/my/buildings' },
-        { label: 'Vidunder', icon: Skull, href: '/community/my/monsters' },
-      ]},
+      {
+        label: 'Min gemenskap',
+        icon: UserCircle,
+        href: '/community/my',
+        children: [
+          { label: 'Strider', icon: Swords, href: '/community/my/battles' },
+          { label: 'Byggnader', icon: Building, href: '/community/my/buildings' },
+          { label: 'Vidunder', icon: Skull, href: '/community/my/monsters' },
+        ],
+      },
     ],
   },
   {
@@ -71,32 +113,56 @@ const navigation: { group: string; items: NavItem[] }[] = [
     items: [
       { label: 'Köpmän', icon: Store, href: '/market/merchants' },
       { label: 'Auktioner', icon: Gavel, href: '/market/auctions' },
-      { label: 'Verkstad', icon: Wrench, href: '/market/workshop', children: [
-        { label: 'Pågående arbeten', icon: Hammer, href: '/market/workshop/ongoing' },
-      ]},
+      {
+        label: 'Verkstad',
+        icon: Wrench,
+        href: '/market/workshop',
+        children: [{ label: 'Pågående arbeten', icon: Hammer, href: '/market/workshop/ongoing' }],
+      },
       { label: 'Sök utrustning', icon: Search, href: '/market/search' },
     ],
   },
   {
     group: 'Staden',
     items: [
-      { label: 'Hälsans Sal', icon: Heart, href: '/city/healing' },
-      { label: 'Yrkesgillet', icon: Castle, href: '/city/guild' },
+      { label: 'Gladiatorer', icon: Users, href: '/city/gladiators' },
+      { label: 'Blodfejder', icon: Swords, href: '/city/blood-feuds' },
+      { label: 'Ärans Sal', icon: Crown, href: '/city/hall-of-honor' },
+      { label: 'Stadsbyggnader', icon: Building, href: '/city/buildings' },
+      { label: 'Jobbdistriktet', icon: Briefcase, href: '/city/jobs' },
+      { label: 'Värdshuset', icon: Beer, href: '/city/tavern' },
+      {
+        label: 'Berättelser',
+        icon: BookOpen,
+        href: '/city/stories',
+        children: [{ label: 'Blå murens arkiv', icon: ScrollText, href: '/city/stories/blue-wall-archive' }],
+      },
+      { label: 'Bank & Förråd', icon: Banknote, href: '/city/bank-storage' },
+      { label: 'Kejsarens skattkammare', icon: Landmark, href: '/city/emperors-treasury' },
+      { label: 'Kejsarens förråd', icon: Vault, href: '/city/emperors-storage' },
+      { label: 'Fängelsehålan', icon: LockKeyhole, href: '/city/dungeon' },
+      {
+        label: 'Kyrkogården',
+        icon: Castle,
+        href: '/city/graveyard',
+        children: [{ label: 'Legendernas ek', icon: TreePine, href: '/city/graveyard/legends-oak' }],
+      },
+      { label: 'Anslagstavlan', icon: Newspaper, href: '/city/bulletin-board' },
+      { label: 'Hjälp', icon: HelpCircle, href: '/help' },
     ],
   },
 ]
 
-const openGroups = ref<string[]>(navigation.map(n => n.group))
 const route = useRoute()
-const emit = defineEmits<{ close: [] }>()
+const openGroups = ref<string[]>(['Genvägar', 'Arenan'])
 
 function toggleGroup(group: string) {
   const idx = openGroups.value.indexOf(group)
   if (idx >= 0) {
     openGroups.value.splice(idx, 1)
-  } else {
-    openGroups.value.push(group)
+    return
   }
+  openGroups.value.push(group)
 }
 
 function isActive(href?: string) {
@@ -105,34 +171,30 @@ function isActive(href?: string) {
 </script>
 
 <template>
-  <nav class="space-y-1 py-2">
-    <div v-for="section in navigation" :key="section.group" class="px-2">
-      <!-- Group header -->
+  <nav class="space-y-2 py-3">
+    <div v-for="section in navigation" :key="section.group" class="px-2.5">
       <button
-        class="flex w-full items-center justify-between rounded-md px-2 py-1.5 text-muted-foreground hover:text-foreground transition-colors"
+        class="group flex w-full items-center justify-between rounded-lg border border-transparent px-2.5 py-2 text-muted-foreground hover:border-border/60 hover:bg-card/70 hover:text-foreground transition-all"
         @click="toggleGroup(section.group)"
       >
-        <span class="text-[0.65rem] font-bold uppercase tracking-widest" style="font-family: var(--font-display);">
-          {{ section.group }}
-        </span>
+        <span class="section-kicker text-[0.62rem]">{{ section.group }}</span>
         <ChevronDown
-          class="size-3 transition-transform duration-200"
+          class="size-3.5 transition-transform duration-200 group-hover:text-primary"
           :class="{ '-rotate-90': !openGroups.includes(section.group) }"
         />
       </button>
 
-      <!-- Group items -->
       <div
         v-if="openGroups.includes(section.group)"
-        class="mt-0.5 space-y-0.5"
+        class="mt-1 space-y-1 rounded-lg border border-border/40 bg-card/35 p-1.5 shadow-[0_6px_14px_oklch(0_0_0_/_0.08)] dark:shadow-[0_10px_18px_oklch(0_0_0_/_0.35)]"
       >
         <template v-for="item in section.items" :key="item.label">
           <NuxtLink
             :to="item.href || '#'"
-            class="nav-item group flex items-center gap-2 rounded-md px-2 py-1.5 text-sm transition-colors"
+            class="nav-item nav-command group flex items-center gap-2 rounded-md px-2.5 py-2 text-sm transition-all"
             :class="isActive(item.href)
-              ? 'bg-accent/60 text-accent-foreground font-medium border-l-2 border-primary'
-              : 'hover:bg-accent/30'"
+              ? 'bg-accent/70 text-accent-foreground font-semibold ring-1 ring-primary/30'
+              : 'text-foreground/80 hover:bg-accent/35 hover:text-foreground'"
           >
             <component
               :is="item.icon"
@@ -140,28 +202,26 @@ function isActive(href?: string) {
               :class="isActive(item.href) ? 'text-primary' : 'text-muted-foreground group-hover:text-foreground'"
             />
             <span class="flex-1 truncate">{{ item.label }}</span>
-            <!-- Notification badge -->
             <Badge
               v-if="item.badge"
               variant="secondary"
-              class="badge-notify ml-auto h-5 min-w-5 justify-center rounded-full px-1.5 text-[0.6rem] font-bold bg-primary/15 text-primary"
+              class="badge-notify ml-auto h-5 min-w-5 justify-center rounded-full px-1.5 text-[0.62rem] font-bold bg-primary/20 text-primary border border-primary/30"
             >
               {{ item.badge }}
             </Badge>
           </NuxtLink>
 
-          <!-- Sub-items -->
-          <div v-if="item.children && openGroups.includes(section.group)" class="ml-4 border-l border-border/50 space-y-0.5 pl-1">
+          <div v-if="item.children" class="ml-4 border-l border-border/70 space-y-1 pl-2">
             <NuxtLink
               v-for="child in item.children"
               :key="child.label"
               :to="child.href || '#'"
-              class="nav-item flex items-center gap-2 rounded-md px-2 py-1 text-xs transition-colors"
+              class="nav-item flex items-center gap-2 rounded-md px-2 py-1.5 text-xs transition-all"
               :class="isActive(child.href)
-                ? 'bg-accent/60 text-accent-foreground font-medium'
+                ? 'bg-accent/60 text-accent-foreground font-semibold ring-1 ring-primary/20'
                 : 'text-muted-foreground hover:bg-accent/30 hover:text-foreground'"
             >
-              <component :is="child.icon" class="size-3 shrink-0" />
+              <component :is="child.icon" class="size-3.5 shrink-0" />
               <span>{{ child.label }}</span>
             </NuxtLink>
           </div>
