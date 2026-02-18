@@ -70,7 +70,7 @@ const rows = computed(() => (tab.value === 'incoming' ? incomingChallenges : out
 
         <div
           class="shrink-0 overflow-hidden rounded-lg border border-border/70 shadow-[0_8px_18px_oklch(0_0_0_/_0.1)]"
-          style="width: 120px; height: 72px;"
+          style="width: 360px; height: 216px;"
         >
           <img
             :src="challengeHeroSrc"

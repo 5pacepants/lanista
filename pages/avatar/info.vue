@@ -313,7 +313,11 @@ watch([selectedBeastTactic, selectedBeastGiveUp], () => {
         </Card>
       </TabsContent>
 
-      <TabsContent v-for="tab in tabs.filter(t => t.value !== 'info')" :key="tab.value" :value="tab.value" class="mt-6">
+      <TabsContent value="equipment" class="mt-6">
+        <GameEquipmentLoadout />
+      </TabsContent>
+
+      <TabsContent v-for="tab in tabs.filter(t => t.value !== 'info' && t.value !== 'equipment')" :key="tab.value" :value="tab.value" class="mt-6">
         <Card class="card-interactive surface-card">
           <CardContent class="flex flex-col items-center justify-center gap-3 py-16">
             <component :is="tab.icon" class="size-10 text-muted-foreground/30" />

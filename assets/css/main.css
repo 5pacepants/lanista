@@ -94,36 +94,36 @@
 
 /* Dark theme - Dark Fantasy with gold/bronze accents */
 .dark {
-  --background: oklch(0.16 0.014 72);
+  --background: oklch(0.15 0.012 78);
   --foreground: oklch(0.95 0.015 82);
-  --card: oklch(0.20 0.018 72);
-  --card-foreground: oklch(0.90 0.02 70);
-  --popover: oklch(0.22 0.018 72);
-  --popover-foreground: oklch(0.90 0.02 70);
+  --card: oklch(0.22 0.02 79);
+  --card-foreground: oklch(0.91 0.02 82);
+  --popover: oklch(0.23 0.02 79);
+  --popover-foreground: oklch(0.91 0.02 82);
   --primary: oklch(0.75 0.10 82);
   --primary-foreground: oklch(0.16 0.015 50);
-  --secondary: oklch(0.25 0.02 72);
-  --secondary-foreground: oklch(0.88 0.02 70);
-  --muted: oklch(0.25 0.015 72);
-  --muted-foreground: oklch(0.76 0.03 78);
+  --secondary: oklch(0.27 0.025 80);
+  --secondary-foreground: oklch(0.89 0.02 82);
+  --muted: oklch(0.24 0.018 79);
+  --muted-foreground: oklch(0.78 0.026 82);
   --accent: oklch(0.66 0.10 80);
   --accent-foreground: oklch(0.95 0.01 70);
   --destructive: oklch(0.60 0.22 25);
-  --border: oklch(0.36 0.03 72);
-  --input: oklch(0.28 0.02 72);
+  --border: oklch(0.40 0.04 80);
+  --input: oklch(0.30 0.025 80);
   --ring: oklch(0.66 0.10 80);
   --chart-1: oklch(0.60 0.22 25);
   --chart-2: oklch(0.65 0.15 145);
   --chart-3: oklch(0.60 0.15 250);
   --chart-4: oklch(0.75 0.13 82);
   --chart-5: oklch(0.55 0.15 300);
-  --sidebar: oklch(0.18 0.02 72);
+  --sidebar: oklch(0.18 0.02 78);
   --sidebar-foreground: oklch(0.92 0.02 82);
   --sidebar-primary: oklch(0.75 0.10 82);
   --sidebar-primary-foreground: oklch(0.16 0.015 50);
-  --sidebar-accent: oklch(0.25 0.03 74);
+  --sidebar-accent: oklch(0.27 0.03 80);
   --sidebar-accent-foreground: oklch(0.92 0.02 82);
-  --sidebar-border: oklch(0.30 0.03 70);
+  --sidebar-border: oklch(0.32 0.03 78);
   --sidebar-ring: oklch(0.66 0.10 80);
   --hp: oklch(0.60 0.22 25);
   --ep: oklch(0.60 0.18 250);
@@ -260,10 +260,10 @@ body::before {
     0 14px 28px oklch(0 0 0 / 0.08);
 }
 .dark .hero-shell {
-  border-color: oklch(0.50 0.08 60 / 0.5);
+  border-color: oklch(0.54 0.08 78 / 0.55);
   background:
-    linear-gradient(145deg, oklch(0.22 0.03 52 / 0.95), oklch(0.18 0.02 50 / 0.95)),
-    radial-gradient(circle at 85% 20%, oklch(0.72 0.12 68 / 0.12), transparent 48%);
+    linear-gradient(145deg, oklch(0.24 0.025 80 / 0.95), oklch(0.19 0.02 78 / 0.96)),
+    radial-gradient(circle at 85% 20%, oklch(0.74 0.11 82 / 0.14), transparent 48%);
 }
 
 .hero-stat-pill {
@@ -278,8 +278,8 @@ body::before {
   font-weight: 600;
 }
 .dark .hero-stat-pill {
-  border-color: oklch(0.50 0.06 60 / 0.7);
-  background: oklch(0.24 0.02 52 / 0.9);
+  border-color: oklch(0.54 0.06 78 / 0.75);
+  background: oklch(0.27 0.02 80 / 0.9);
 }
 
 .surface-button {
@@ -313,8 +313,8 @@ body::before {
   background: linear-gradient(160deg, oklch(0.99 0.01 75), oklch(0.97 0.01 74));
 }
 .dark .surface-card {
-  border-color: oklch(0.34 0.03 56);
-  background: linear-gradient(160deg, oklch(0.22 0.02 50), oklch(0.19 0.02 49));
+  border-color: oklch(0.45 0.04 80);
+  background: linear-gradient(160deg, oklch(0.25 0.025 80), oklch(0.20 0.02 78));
 }
 
 .surface-card-highlight {
@@ -324,10 +324,10 @@ body::before {
     radial-gradient(circle at 100% 0%, oklch(0.80 0.08 69 / 0.2), transparent 40%);
 }
 .dark .surface-card-highlight {
-  border-color: oklch(0.52 0.10 63 / 0.5);
+  border-color: oklch(0.58 0.10 80 / 0.55);
   background:
-    linear-gradient(155deg, oklch(0.24 0.02 50), oklch(0.20 0.02 49)),
-    radial-gradient(circle at 100% 0%, oklch(0.66 0.12 65 / 0.12), transparent 43%);
+    linear-gradient(155deg, oklch(0.27 0.03 80), oklch(0.22 0.02 79)),
+    radial-gradient(circle at 100% 0%, oklch(0.74 0.11 82 / 0.14), transparent 43%);
 }
 
 .surface-card-alert {
@@ -335,8 +335,8 @@ body::before {
   background: linear-gradient(165deg, oklch(0.99 0.01 73), oklch(0.97 0.02 71));
 }
 .dark .surface-card-alert {
-  border-color: oklch(0.50 0.08 60 / 0.55);
-  background: linear-gradient(165deg, oklch(0.23 0.02 51), oklch(0.20 0.02 50));
+  border-color: oklch(0.54 0.08 78 / 0.55);
+  background: linear-gradient(165deg, oklch(0.25 0.025 80), oklch(0.21 0.02 78));
 }
 
 /* ===== Marquee ticker ===== */
